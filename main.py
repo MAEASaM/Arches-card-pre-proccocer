@@ -17,7 +17,9 @@ args = parser.parse_args()
 def preprocess(args):
     input_folder = pathlib.Path(args.input)
     output_folder = pathlib.Path(args.output)
+    print(f"Input folder: {input_folder}")
+    print(f"{output_folder=}")
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     preprocess(args)
