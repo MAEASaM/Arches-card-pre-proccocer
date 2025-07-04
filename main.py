@@ -1,23 +1,28 @@
-# from utils import read_csv
+from utils import read_csv, write_csv
 import argparse
 import pathlib
 
 parser = argparse.ArgumentParser(
         description='Preproccess files to match expect card format in Arches')
 parser.add_argument(
-        '-in', "--input", metavar='str', type=str,
+        '-iof', "--input_data_folder", metavar='str', type=str,
         help='folder to be preprocessed', default='data')
+parser.add_argument( '-f', "--file", metavar='str', type=str,
+        help='file to be preprocessed', default='data.csv')
 parser.add_argument(
-        '-out', "--output", metavar='str', type=str,
+        '-od', "--output_directory", metavar='str', type=str,
         help='folder to be written to', default='output')
 
 args = parser.parse_args()
 
 
 def preprocess(args):
-    input_folder = pathlib.Path(args.input)
-    output_folder = pathlib.Path(args.output)
-    print(f"Input folder: {input_folder}")
+    input_data_folder = pathlib.Path(args.input_data_folder)
+    output_folder = pathlib.Path(args.output_directory)
+    data_file = pathlib.Path(args.file)
+    df = read_csv(input_data_folder / data_file) 
+    write_csv(df, output_folder / data_file)
+    print(f"Input folder: {input_data_folder}")
     print(f"{output_folder=}")
 
 
