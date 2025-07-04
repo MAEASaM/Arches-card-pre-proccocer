@@ -20,8 +20,9 @@ def preprocess(args):
     input_data_folder = pathlib.Path(args.input_data_folder)
     output_folder = pathlib.Path(args.output_directory)
     data_file = pathlib.Path(args.file)
-    df = read_csv(input_data_folder / data_file) 
-    write_csv(df, output_folder / data_file)
+    df = read_csv(input_data_folder / data_file)
+    output_file = data_file.stem + '_processed.csv'
+    write_csv(df, output_folder / output_file)
     print(f"Input folder: {input_data_folder}")
     print(f"{output_folder=}")
 
